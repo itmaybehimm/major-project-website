@@ -1,23 +1,38 @@
-FROM node:18-alpine AS build 
+# Stage 1: Build the Vite app
+FROM node:18-alpine AS build
 
-#set the working directory 
+# Set working directory
 WORKDIR /app
 
-#Dependency Installation 
-COPY package.json package-lock.json ./ 
+# Copy package.json and package-lock.json for dependency installation
+COPY package*.json ./
 
-RUN npm install 
+# Install dependencies
+RUN npm install
 
-#Copy the rest of the project files 
-COPY . . 
+# Copy all project files
+COPY . .
 
-RUN npm run build 
+# Build the project
+RUN npm run build
 
-#Using a lightweight web server (NGINX) for serving static files 
-FROM nginx:alpine 
+# Stage 2: Serve the built app with Nginx
+FROM nginx:alpine
 
-COPY --from=build /app/dist /usr/share/nginx/html 
+# Set working directory
+WORKDIR /usr/share/nginx/html
 
-EXPOSE 80 
+# Remove default Nginx static files
+RUN rm -rf ./*
 
+# Copy built files from the build stage
+COPY --from=build /app/dist .
+
+# Copy custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]

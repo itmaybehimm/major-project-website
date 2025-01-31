@@ -15,34 +15,34 @@ const Team = () => {
         <p className="head-text">Team</p>
 
         <div className="work-container">
-          <div className='work-canvas'>
-            <TeamCard 
-              imageSrc="assets/team/himanshu.jpeg" 
+          <div className="work-canvas">
+            <TeamCard
+              imageSrc="assets/team/himanshu.jpeg"
               name="Himanshu Pradhan"
               rollNo="077BCT030"
-              facebookLink=""
-              githubLink=""
-              linkedinLink=""
+              facebookLink="https://www.facebook.com/himansupradhan472"
+              githubLink="https://github.com/itmaybehimm"
+              linkedinLink="https://www.linkedin.com/in/himanshu-pradhan-780aa415a/"
             />
           </div>
-          <div className='work-canvas'>
-            <TeamCard 
-              imageSrc="assets/team/janam.jpg" 
+          <div className="work-canvas">
+            <TeamCard
+              imageSrc="assets/team/janam.jpg"
               name="Janam Shrestha"
               rollNo="077BCT032"
-              facebookLink=""
-              githubLink=""
-              linkedinLink=""
+              facebookLink="https://www.facebook.com/janam.stha.7"
+              githubLink="https://github.com/Xzanam/"
+              linkedinLink="https://www.linkedin.com/in/janam-shrestha/"
             />
           </div>
-          <div className='work-canvas'>
-            <TeamCard 
-              imageSrc="assets/team/mejan.jpg" 
+          <div className="work-canvas">
+            <TeamCard
+              imageSrc="assets/team/mejan.jpg"
               name="Mejan Lamichhane"
               rollNo="077BCT047"
-              facebookLink=""
+              facebookLink="https://www.facebook.com/mejan.lamichhane17"
               githubLink=""
-              linkedinLink=""
+              linkedinLink="https://www.linkedin.com/in/mejan-lamichhane-581408284/"
             />
           </div>
         </div>
