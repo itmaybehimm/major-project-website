@@ -3,6 +3,7 @@ import About from './sections/About.jsx';
 import Footer from './sections/Footer.jsx';
 import Navbar from './sections/Navbar.jsx';
 import Team from './sections/Team.jsx';
+import Contact from './sections/Contact.jsx';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Hero />
       <About />
       <Team />
+      <Contact />
       <Footer />
     </main>
   );

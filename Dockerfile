@@ -13,10 +13,10 @@ RUN npm install
 # Copy all project files
 COPY . .
 
-# Build the project
 RUN npm run build
-
+# Build the project
 # Stage 2: Serve the built app with Nginx
+
 FROM nginx:alpine
 
 # Set working directory
