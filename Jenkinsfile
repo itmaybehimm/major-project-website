@@ -34,6 +34,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 echo "Building Docker Image..."
+                sh 'systemctl status docker'
                 sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
             }
         }
