@@ -5,14 +5,10 @@ pipeline {
         }
     }
     triggers {
-        // Listen for GitHub push events
         githubPush()
     }
     stages {
         stage('Build') {
-            when {
-                branch 'main' 
-            }
             steps {
                 echo "Building.."
                 sh '''
@@ -24,9 +20,6 @@ pipeline {
             }
         }
         stage('Test') {
-            when {
-                branch 'main' 
-            }
             steps {
                 echo "Testing.."
                 sh '''
@@ -35,9 +28,6 @@ pipeline {
             }
         }
         stage('Deliver') {
-            when {
-                branch 'main'  
-            }
             steps {
                 echo 'Deliver....'
                 sh '''
