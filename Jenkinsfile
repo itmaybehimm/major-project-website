@@ -55,13 +55,9 @@ pipeline {
             }
         }
          stage('Deploy to Production') {
-            when {
-                branch 'main'
-            }
             steps {
                 echo "Deploying to Production..."
                 sh 'docker push $DOCKER_IMAGE:$DOCKER_TAG'
-                // sh 'ssh user@production-server "docker pull $DOCKER_IMAGE:$DOCKER_TAG && docker run -d $DOCKER_IMAGE:$DOCKER_TAG"'
             }
         }
     }
