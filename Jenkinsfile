@@ -46,12 +46,9 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to Production...'
-
-                withKubeConfig([credentialsId: 'minikube-mac']) {
-                    sh 'kubectl apply -f k8s/deployment.yaml'
-                    sh 'kubectl apply -f k8s/service.yaml'
-                    sh 'kubectl apply -f k8s/ingress.yaml'
-                                }
+                script {
+                    kubernetesDeploy(kubeconfigId: 'minikube-mac', configs: ['k8s/deployment.yaml', 'k8s/service.yaml', 'k8s/ingress.yaml'])
+                }
             }
         }
     }
