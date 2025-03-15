@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         node {
-            label 'docker-node-agent'
+            label 'docker-node-agent-non-ssh'
         }
     }
     environment {
