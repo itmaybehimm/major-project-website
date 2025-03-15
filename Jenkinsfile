@@ -7,6 +7,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'himanshupradhan/major-website'
         DOCKER_TAG = 'latest'
+        KUBECONFIG = credentials('minikube-mac')
     }
     triggers {
         githubPush()
@@ -46,8 +47,16 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to Production...'
+
                 script {
-                    kubernetesDeploy(kubeconfigId: 'minikube-mac', configs: ['k8s/deployment.yaml', 'k8s/service.yaml', 'k8s/ingress.yaml'])
+                    sh '''
+                        export KUBECONFIG=$KUBECONFIG
+
+                        # Apply the Kubernetes configuration files to the cluster
+                        kubectl apply -f k8s/deployment.yaml
+                        kubectl apply -f k8s/service.yaml
+                        kubectl apply -f k8s/ingress.yaml
+                    '''
                 }
             }
         }
