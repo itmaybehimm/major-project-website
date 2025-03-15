@@ -13,14 +13,9 @@ pipeline {
     }
     stages {
         stage('Build') {
-            steps {
-                echo "Building.."
-                sh '''
-                npm install
-                '''
-                sh '''
-                npm run build
-                '''
+           steps {
+                echo "Building Docker Image..."
+                sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
             }
         }
         stage('Test') {
@@ -29,12 +24,6 @@ pipeline {
                 sh '''
                 echo "doing test stuff this is changed.."
                 '''
-            }
-        }
-        stage('Docker Build') {
-            steps {
-                echo "Building Docker Image..."
-                sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
             }
         }
         stage('Deliver') {
