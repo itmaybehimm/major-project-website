@@ -20,12 +20,12 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
-           steps {
-                echo "Building npm..."
-                sh 'npm run build'
-            }
-        }
+        // stage('Build') {
+        //    steps {
+        //         echo "Building npm..."
+        //         sh 'npm run build'
+        //     }
+        // }
         stage('Build Docker') {
            steps {
                 echo "Building Docker Image..."
