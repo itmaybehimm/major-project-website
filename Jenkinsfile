@@ -22,8 +22,13 @@ pipeline {
         }
         stage('Build') {
            steps {
+                echo "Building npm..."
+                sh 'npm run build'
+            }
+        }
+        stage('Build Docker') {
+           steps {
                 echo "Building Docker Image..."
-                 sh 'npm run build'
                 sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
             }
         }
