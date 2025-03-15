@@ -12,6 +12,14 @@ pipeline {
         githubPush()
     }
     stages {
+          stage('Login') {
+           steps {
+                echo "Logging in to DockerHub..."
+                withCredentials([usernamePassword(credentialsId: 'himanshupradhan-dockerhub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                    sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                }
+            }
+        }
         stage('Build') {
            steps {
                 echo "Building Docker Image..."
