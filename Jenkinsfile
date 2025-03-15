@@ -20,6 +20,12 @@ pipeline {
                 }
             }
         }
+        stage('Install') {
+           steps {
+                echo "Building npm..."
+                sh 'npm install'
+            }
+        }
         stage('Build') {
            steps {
                 echo "Building npm..."
