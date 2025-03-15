@@ -47,7 +47,7 @@ pipeline {
             steps {
                 echo 'Deploying to Production...'
                 script {
-                    kubernetesDeploy(kubeconfigId: 'minikube-mac', configs: ['k8s/deployment.yaml', 'k8s/service.yaml', 'k8s/ingress.yaml'])
+                    kubernetesDeploy(kubeconfigId: 'minikube-mac', configs: 'k8s/*.yml')
                 }
             }
         }
