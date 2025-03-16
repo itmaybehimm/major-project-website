@@ -49,7 +49,7 @@ pipeline {
                 echo 'Deploying to Production...'
                 script {
                     sh "kubectl --kubeconfig=$KUBECONFIG apply -f k8s/deployment.yaml"
-                    sh "kubectl --kubeconfig=$KUBECONFIG apply -f k8s/sevice.yaml"
+                    sh "kubectl --kubeconfig=$KUBECONFIG apply -f k8s/service.yaml"
                     sh "kubectl --kubeconfig=$KUBECONFIG apply -f k8s/ingress.yaml"
                 }
             }
