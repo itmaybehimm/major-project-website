@@ -48,9 +48,7 @@ pipeline {
             steps {
                 echo 'Deploying to Production...'
                 script {
-                    sh "kubectl --kubeconfig=$KUBECONFIG apply -f k8s/deployment.yaml"
-                    sh "kubectl --kubeconfig=$KUBECONFIG apply -f k8s/service.yaml"
-                    sh "kubectl --kubeconfig=$KUBECONFIG apply -f k8s/ingress.yaml"
+                    sh "kubectl --kubeconfig=$KUBECONFIG set image deployment/major-website-deployment frontend=$DOCKER_IMAGE:$DOCKER_TAG"
                 }
             }
         }
