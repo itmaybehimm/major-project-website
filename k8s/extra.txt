@@ -1,0 +1,23 @@
+minikuibe tunnel for ingress
+
+minikube service <SERVICE_NAME> --url
+
+minikube dashboard
+
+minkibue in mac requires this due to tunneling issues or something
+
+
+Try in linux
+
+Make sure that jenkins and minikube are on the same network ideally minikube while starting
+
+
+minikube addons enable ingress
+
+
+To run on external loki use this in promptail:
+https://medium.com/@muppedaanvesh/a-hands-on-guide-to-kubernetes-logging-using-grafana-loki-%EF%B8%8F-b8d37ea4de13
+
+helm show values grafana/loki-stack > loki-custom-values.yaml
+
+helm upgrade --install --values loki-custom-values.yaml loki grafana/loki-stack 
