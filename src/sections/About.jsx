@@ -4,7 +4,7 @@ import ReusableCard from '../components/ReusableCard.jsx';
 const About = () => {
   return (
     <section className="c-space my-20" id="info">
-      <p className="head-text py-5">Project Info</p>
+      <p className="head-text py-5">About Project</p>
       <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full">
         <ReusableCard
           imageSrc="assets/lock.png"
