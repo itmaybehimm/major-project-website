@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         DOCKER_IMAGE = 'himanshupradhan/major-website'
-        DOCKER_TAG = 'latest'
+        DOCKER_TAG = "${BUILD_NUMBER}"
         KUBECONFIG = credentials('minikube-config')
     }
     triggers {
@@ -24,7 +24,7 @@ pipeline {
         stage('Build Docker') {
             steps {
                 echo 'Building Docker Image...'
-                sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
+                sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG -t $DOCKER_IMAGE:latest .'
             }
         }
 
@@ -42,13 +42,16 @@ pipeline {
             steps {
                 echo 'Deliver....'
                 sh 'docker push $DOCKER_IMAGE:$DOCKER_TAG'
+                sh 'docker push $DOCKER_IMAGE:latest'
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to Production...'
                 script {
-                    sh "kubectl --kubeconfig=$KUBECONFIG set image deployment/major-website-deployment frontend=$DOCKER_IMAGE:$DOCKER_TAG"
+                    sh "sed -i 's/<TAG>/${BUILD_NUMBER}/' k8s/deployment.yaml"
+
+                    sh "kubectl --kubeconfig=$KUBECONFIG apply -f k8s/deployment.yaml"
                 }
             }
         }
